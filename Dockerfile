@@ -26,6 +26,7 @@ RUN ln -sf /dev/stdout /var/log/nginx/access.log && ln -sf /dev/stderr /var/log/
 COPY nginx.conf /etc/nginx/sites-enabled/default
 
 ### php-fpm configuration
+RUN sed -i 's|session.gc_probability = 0|session.gc_probability = 1|g' /etc/php/7.0/fpm/php.ini
 # Create directory to store socket file
 RUN mkdir /run/php
 # Replace default www pool
